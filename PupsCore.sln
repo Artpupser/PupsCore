@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PupsCoreLib", "PupsCoreLib\PupsCoreLib.csproj", "{B750F72B-5A74-47A9-8209-34A5500A2827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PupsCoreApp", "PupsCoreApp\PupsCoreApp.csproj", "{5728543A-7D5C-4915-976F-566D1CD36EA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B750F72B-5A74-47A9-8209-34A5500A2827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B750F72B-5A74-47A9-8209-34A5500A2827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B750F72B-5A74-47A9-8209-34A5500A2827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B750F72B-5A74-47A9-8209-34A5500A2827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5728543A-7D5C-4915-976F-566D1CD36EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5728543A-7D5C-4915-976F-566D1CD36EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5728543A-7D5C-4915-976F-566D1CD36EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5728543A-7D5C-4915-976F-566D1CD36EA2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
