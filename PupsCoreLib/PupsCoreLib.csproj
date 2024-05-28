@@ -4,11 +4,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <PackageId>PupsLib</PackageId>
+    <PackageId>Pups.Core</PackageId>
     <Version>1.0.0</Version>
     <Authors>artpupser</Authors>
     <Owners>artpupser</Owners>
-    <Description>PupsLib class library</Description>
+    <Description>PupsCore class library</Description>
     <Copyright>Copyright MIT LICENSE 2024</Copyright>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
