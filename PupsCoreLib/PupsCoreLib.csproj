@@ -11,6 +11,8 @@
     <Description>PupsLib class library</Description>
     <Copyright>Copyright MIT LICENSE 2024</Copyright>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/Artpupser/PupsCore</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
