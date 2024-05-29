@@ -1,10 +1,19 @@
-using System;
-using System.Threading.Tasks;
-
 namespace PupsCore.Components;
 
-// -- NOT STABLE / NOT TESTED
-public struct PupsTryResult<T>
+public struct PupsTryResult : IPupsTryResult
+{
+  private bool _success = false;
+  private PupsException _exception = null;
+  public PupsTryResult(bool success, PupsException exception = null)
+  {
+    Success = success;
+    Exception = exception;
+  }
+  public bool Success { get => _success; set => _success = value; }
+  public PupsException Exception { get => _exception; set => _exception = value; }
+}
+
+public struct PupsTryResult<T> : IPupsTryResult
 {
   private bool _success = false;
   private PupsException _exception = null;

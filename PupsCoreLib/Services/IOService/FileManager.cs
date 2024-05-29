@@ -52,7 +52,6 @@ public class FileManager
   }
   #endregion
   #region Json
-  // -- NOT STABLE / NOT TESTED
   public async Task<PupsTryResult<T>> TryGetFileJson<T>(string path)
   {
     try
@@ -62,6 +61,18 @@ public class FileManager
     catch (Exception e)
     {
       return new PupsTryResult<T>(false, default, (PupsException)e);
+    }
+  }
+  public async Task<PupsTryResult> TrySetFileJson<T>(string path, T content)
+  {
+    try
+    {
+      await File.WriteAllTextAsync(path, JsonConvert.SerializeObject(content));
+      return new PupsTryResult(true);
+    }
+    catch (Exception e)
+    {
+      return new PupsTryResult(false, (PupsException)e);
     }
   }
   public async Task<T> GetFileJson<T>(string path) => JsonConvert.DeserializeObject<T>(await File.ReadAllTextAsync(path));
