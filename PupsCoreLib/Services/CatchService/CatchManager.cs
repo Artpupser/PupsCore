@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using PupsCoreLib.Components;
-using PupsCoreLib.Services.LogService;
+using PupsCore.Components;
+using PupsCore.Services.LogService;
 
-namespace PupsCoreLib.Services.CatchService;
+namespace PupsCore.Services.CatchService;
 
 public class CatchManager
 {

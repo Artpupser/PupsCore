@@ -1,7 +1,7 @@
 using System;
-using PupsCoreLib.Components;
+using PupsCore.Components;
 
-namespace PupsCoreLib.Services.CatchService;
+namespace PupsCore.Services.CatchService;
 
 public class CatchEventArgs : EventArgs
 {

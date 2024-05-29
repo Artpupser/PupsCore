@@ -1,29 +1,22 @@
 using System.Threading.Tasks;
-using PupsCoreLib.Services.CatchService;
-using PupsCoreLib.Services.FileService;
-using PupsCoreLib.Services.LogService;
+using PupsCore.Services.CatchService;
+using PupsCore.Services.FileService;
+using PupsCore.Services.LogService;
 
-namespace PupsCoreLib.Services.InitService;
+namespace PupsCore.Services.InitService;
 public static class PupsCoreBootstrap
 {
-  public static Task InitPupsCoreBootstrap(PupsCoreBootstrapEnum pupsCoreBootstrapEnum)
+  public static bool AlreadyInited { get; private set; } = false;
+  public static Task InitPupsCoreBootstrap()
   {
-    if (pupsCoreBootstrapEnum.HasFlag(PupsCoreBootstrapEnum.LogManager))
-    {
-      _ = new LogManager();
-      _ = LogManager.Instance.PushLog("LogManager initialized!", LogStatusType.Info);
-    }
-    if (pupsCoreBootstrapEnum.HasFlag(PupsCoreBootstrapEnum.FileManager))
-    {
-      _ = new FileManager();
-      _ = LogManager.Instance.PushLog("FileManager initialized!", LogStatusType.Info);
-    }
-    if (pupsCoreBootstrapEnum.HasFlag(PupsCoreBootstrapEnum.CatchManager))
-    {
-      _ = new CatchManager();
-      _ = LogManager.Instance.PushLog("CatchManager initialized!", LogStatusType.Info);
-    }
+    _ = new LogManager();
+    _ = LogManager.Instance.PushLog("LogManager initialized!", LogStatusType.Info);
+    _ = new FileManager();
+    _ = LogManager.Instance.PushLog("FileManager initialized!", LogStatusType.Info);
+    _ = new CatchManager();
+    _ = LogManager.Instance.PushLog("CatchManager initialized!", LogStatusType.Info);
     _ = LogManager.Instance.PushLog("PupsCore initialized!", LogStatusType.Ok);
+    AlreadyInited = true;
     return Task.CompletedTask;
   }
 }

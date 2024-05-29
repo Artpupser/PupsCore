@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 
-namespace PupsCoreLib.Components;
+namespace PupsCore.Components;
 
 public class PupsEvent<T> where T : EventArgs
 {

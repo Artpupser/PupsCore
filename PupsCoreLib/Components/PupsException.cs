@@ -1,6 +1,6 @@
 using System;
 
-namespace PupsCoreLib.Components;
+namespace PupsCore.Components;
 
 public class PupsException : Exception
 {

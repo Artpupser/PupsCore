@@ -5,7 +5,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <PackageId>Pups.Core</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>artpupser</Authors>
     <Owners>artpupser</Owners>
     <Description>PupsCore class library</Description>

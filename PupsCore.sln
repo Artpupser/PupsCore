@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PupsCoreLib", "PupsCoreLib\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PupsCoreApp", "PupsCoreApp\PupsCoreApp.csproj", "{5728543A-7D5C-4915-976F-566D1CD36EA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PupsCoreTest", "PupsCoreTest\PupsCoreTest.csproj", "{455E5D11-AE84-4BCE-86B8-CEDD8735F4A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{5728543A-7D5C-4915-976F-566D1CD36EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5728543A-7D5C-4915-976F-566D1CD36EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5728543A-7D5C-4915-976F-566D1CD36EA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{455E5D11-AE84-4BCE-86B8-CEDD8735F4A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{455E5D11-AE84-4BCE-86B8-CEDD8735F4A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{455E5D11-AE84-4BCE-86B8-CEDD8735F4A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{455E5D11-AE84-4BCE-86B8-CEDD8735F4A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

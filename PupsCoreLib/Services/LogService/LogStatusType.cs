@@ -1,4 +1,4 @@
-namespace PupsCoreLib.Services.LogService;
+namespace PupsCore.Services.LogService;
 
 public enum LogStatusType : byte
 {

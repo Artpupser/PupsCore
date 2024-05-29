@@ -1,5 +1,5 @@
-﻿using PupsCoreLib.Services.InitService;
-using PupsCoreLib.Services.LogService;
+﻿using PupsCore.Services.InitService;
+using PupsCore.Services.LogService;
 
 namespace PupsCoreApp;
 
@@ -8,7 +8,7 @@ internal class Program
   private static async Task Main() => await new Program().MainAsync();
   private async Task MainAsync()
   {
-    await PupsCoreBootstrap.InitPupsCoreBootstrap(PupsCoreBootstrapEnum.All);
+    await PupsCoreBootstrap.InitPupsCoreBootstrap();
     Console.WriteLine("Hello world!");
     Console.WriteLine("Input any text to end...");
     Console.ReadLine();

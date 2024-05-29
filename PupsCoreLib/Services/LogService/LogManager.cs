@@ -4,10 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using PupsCoreLib.Components;
-using PupsCoreLib.Services.FileService;
+using PupsCore.Components;
+using PupsCore.Services.FileService;
 
-namespace PupsCoreLib.Services.LogService;
+namespace PupsCore.Services.LogService;
 
 public class LogManager
 {

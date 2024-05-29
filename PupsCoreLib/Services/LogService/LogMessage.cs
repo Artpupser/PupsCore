@@ -1,6 +1,6 @@
 using System;
 
-namespace PupsCoreLib.Services.LogService;
+namespace PupsCore.Services.LogService;
 
 public struct LogMessage
 {

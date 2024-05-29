@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
-using PupsCoreLib.Components;
-using PupsCoreLib.Services.LogService;
+using PupsCore.Components;
+using PupsCore.Services.LogService;
 
-namespace PupsCoreLib.Services.FileService;
+namespace PupsCore.Services.FileService;
 
 public class FileManager
 {
@@ -54,6 +52,18 @@ public class FileManager
   }
   #endregion
   #region Json
+  // -- NOT STABLE / NOT TESTED
+  public async Task<PupsTryResult<T>> TryGetFileJson<T>(string path)
+  {
+    try
+    {
+      return new PupsTryResult<T>(true, JsonConvert.DeserializeObject<T>(await File.ReadAllTextAsync(path)));
+    }
+    catch (Exception e)
+    {
+      return new PupsTryResult<T>(false, default, (PupsException)e);
+    }
+  }
   public async Task<T> GetFileJson<T>(string path) => JsonConvert.DeserializeObject<T>(await File.ReadAllTextAsync(path));
   public async Task SetFileJson<T>(string path, T content) => await File.WriteAllTextAsync(path, JsonConvert.SerializeObject(content));
   #endregion

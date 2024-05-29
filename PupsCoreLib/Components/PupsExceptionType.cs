@@ -1,4 +1,4 @@
-namespace PupsCoreLib.Components;
+namespace PupsCore.Components;
 
 public enum PupsExceptionType : byte
 {
