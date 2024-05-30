@@ -8,7 +8,7 @@ using Newtonsoft.Json.Bson;
 using PupsCore.Components;
 using PupsCore.Services.LogService;
 
-namespace PupsCore.Services.FileService;
+namespace PupsCore.Services.IOService;
 
 public class FileManager
 {

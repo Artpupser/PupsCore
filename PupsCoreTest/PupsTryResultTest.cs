@@ -10,7 +10,6 @@ namespace PupsCoreTest;
 [TestFixture]
 public class PupsTryResultTest : AnyTestAbstract
 {
-
   [Test]
   public void TryResultErrorTest()
   {

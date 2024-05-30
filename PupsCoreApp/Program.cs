@@ -1,5 +1,5 @@
 ﻿using PupsCore.Services.InitService;
-using PupsCore.Services.LogService;
+using static PupsCore.Statics.PupsCoreStatic;
 
 namespace PupsCoreApp;
 
@@ -12,10 +12,9 @@ internal class Program
     Console.WriteLine("Hello world!");
     Console.WriteLine("Input any text to end...");
     Console.ReadLine();
-    await EndApplication();
-  }
-  private async Task EndApplication()
-  {
-    await LogManager.Instance.PushLog("PupsCoreApp ending :)", LogStatusType.Ok);
+    await EndApplication(() =>
+    {
+      Console.WriteLine("Goodbye!");
+    });
   }
 }

@@ -1,4 +1,4 @@
-namespace PupsCore.Services.FileService;
+namespace PupsCore.Services.IOService;
 
 public enum PupsDirectoryEnum : byte
 {
