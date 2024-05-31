@@ -22,7 +22,7 @@ public class PupsTryResultTest : AnyTestAbstract
     var successResult = SpecialSuccessTest<object>().Result;
     Assert.That(successResult.Success, Is.True);
   }
-  public Task<PupsTryResult<T>> SpecialErrorTest<T>()
+  public static Task<PupsTryResult<T>> SpecialErrorTest<T>()
   {
     try
     {
@@ -33,7 +33,7 @@ public class PupsTryResultTest : AnyTestAbstract
       return Task.FromResult(new PupsTryResult<T>(false, default, pe));
     }
   }
-  public Task<PupsTryResult<T>> SpecialSuccessTest<T>()
+  public static Task<PupsTryResult<T>> SpecialSuccessTest<T>()
   {
     try
     {

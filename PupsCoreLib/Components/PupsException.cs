@@ -2,6 +2,7 @@ using System;
 
 namespace PupsCore.Components;
 
+
 public class PupsException : Exception
 {
   private PupsExceptionType _exceptionType;
