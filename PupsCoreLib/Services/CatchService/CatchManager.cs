@@ -17,6 +17,7 @@ public class CatchManager
       throw new PupsException("CatchManager is already initialized! [Singleton pattern]", PupsExceptionType.Error);
     Instance = this;
     _ = Init();
+    _ = LogManager.Instance.PushLog("CatchManager initialized!", LogStatusType.Info);
   }
   private Task Init()
   {
@@ -29,18 +30,7 @@ public class CatchManager
     var basicException = e.ExceptionObject as Exception;
     var pupsException = e.ExceptionObject as PupsException ?? new("", PupsExceptionType.Warning);
     var message = $"isTerminating: [{e.IsTerminating}], {basicException.Source} >\n{basicException.StackTrace},\n\tMessage: [{pupsException.Message}]";
-    switch (pupsException.ExceptionType)
-    {
-      case PupsExceptionType.Warning:
-        _ = logManager.PushLog(message, LogStatusType.Warning);
-        break;
-      case PupsExceptionType.Error:
-        _ = logManager.PushLog(message, LogStatusType.Error);
-        break;
-      case PupsExceptionType.Fatal:
-        _ = logManager.PushLog(message, LogStatusType.Fatal);
-        break;
-    }
+    _ = logManager.PushLog(message, (LogStatusType)(pupsException.ExceptionType + 2));
     onCatchAnyException.Invoke(this, new CatchEventArgs(pupsException));
     _ = logManager.PushLog("<< Program end working... >>", LogStatusType.Info);
     _ = logManager.SaveFileLog();

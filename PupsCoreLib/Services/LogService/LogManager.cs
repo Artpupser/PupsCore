@@ -27,6 +27,7 @@ public class LogManager
       throw new PupsException("LogManager is already initialized! [Singleton pattern]", PupsExceptionType.Error);
     Instance = this;
     _ = Init();
+    _ = Instance.PushLog("LogManager initialized!", LogStatusType.Info);
   }
   private Task Init()
   {
@@ -35,19 +36,27 @@ public class LogManager
     AppDomain.CurrentDomain.ProcessExit += (sender, e) => _ = SaveFileLog();
     return Task.CompletedTask;
   }
-  public async Task PushLog(string message, LogStatusType logStatus = LogStatusType.Info)
+  public Task PushLog(string message, LogStatusType logStatus = LogStatusType.Info)
   {
-    _logBuilder.Append(await BuildLog(message, logStatus));
-    _countLogToAppendFile++;
-    if (_autoSaveFileValue == _countLogToAppendFile)
-      await SaveFileLog();
+    Task.Run(async () =>
+    {
+      _logBuilder.Append(await BuildLog(message, logStatus));
+      _countLogToAppendFile++;
+      if (_autoSaveFileValue == _countLogToAppendFile)
+        await SaveFileLog();
+    });
+    return Task.CompletedTask;
   }
-  public async Task PushLog(LogMessage logMessage)
+  public Task PushLog(LogMessage logMessage)
   {
-    _logBuilder.Append(await BuildLog(logMessage));
-    _countLogToAppendFile++;
-    if (_autoSaveFileValue == _countLogToAppendFile)
-      await SaveFileLog();
+    Task.Run(async () =>
+    {
+      _logBuilder.Append(await BuildLog(logMessage));
+      _countLogToAppendFile++;
+      if (_autoSaveFileValue == _countLogToAppendFile)
+        await SaveFileLog();
+    });
+    return Task.CompletedTask;
   }
   public async Task SaveFileLog()
   {

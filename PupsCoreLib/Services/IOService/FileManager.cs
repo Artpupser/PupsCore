@@ -29,25 +29,28 @@ public class FileManager
       throw new PupsException("FileManager is already initialized! [Singleton pattern]", PupsExceptionType.Error);
     Instance = this;
     _ = Init();
+    _ = LogManager.Instance.PushLog("FileManager initialized!", LogStatusType.Info);
   }
-  public Task<string> BuildPath(PupsDirectoryEnum pupsDirectoryEnum, string fullName = "") =>
-    Task.FromResult($"{_directoryPaths[pupsDirectoryEnum]}{fullName}");
+  public Task<string> BuildPath(PupsDirectoryEnum pupsDirectoryEnum, string fullName = "") => Task.FromResult($"{_directoryPaths[pupsDirectoryEnum]}{fullName}");
   #region FileOperations
   #region Other
   public Task DeleteFile(string path)
   {
     File.Delete(path);
+    logManager.PushLog($"File deleted: [{path}]", LogStatusType.Info);
     return Task.CompletedTask;
   }
   public Task DeleteDir(string path)
   {
     Directory.Delete(path);
+    logManager.PushLog($"Directory deleted: [{path}]", LogStatusType.Info);
     return Task.CompletedTask;
   }
   public Task<bool> IsExitis(string path) => Task.FromResult(File.Exists(path) || Directory.Exists(path));
   public Task CreateFile(string path)
   {
     using var stream = File.Create(path);
+    logManager.PushLog($"File created: [{path}]", LogStatusType.Info);
     return Task.CompletedTask;
   }
   #endregion
@@ -56,7 +59,7 @@ public class FileManager
   {
     try
     {
-      return new PupsTryResult<T>(true, JsonConvert.DeserializeObject<T>(await File.ReadAllTextAsync(path)));
+      return new PupsTryResult<T>(true, await GetFileJson<T>(path));
     }
     catch (Exception e)
     {
@@ -67,7 +70,7 @@ public class FileManager
   {
     try
     {
-      await File.WriteAllTextAsync(path, JsonConvert.SerializeObject(content));
+      await SetFileJson(path, content);
       return new PupsTryResult(true);
     }
     catch (Exception e)
@@ -79,6 +82,29 @@ public class FileManager
   public async Task SetFileJson<T>(string path, T content) => await File.WriteAllTextAsync(path, JsonConvert.SerializeObject(content));
   #endregion
   #region Bson
+  public async Task<PupsTryResult<T>> TryGetFileBson<T>(string path)
+  {
+    try
+    {
+      return new PupsTryResult<T>(true, await GetFileBson<T>(path));
+    }
+    catch (Exception e)
+    {
+      return new PupsTryResult<T>(false, default, (PupsException)e);
+    }
+  }
+  public async Task<PupsTryResult> TrySetFileBson<T>(string path, T content)
+  {
+    try
+    {
+      await SetFileBson(path, content);
+      return new PupsTryResult(true);
+    }
+    catch (Exception e)
+    {
+      return new PupsTryResult(false, (PupsException)e);
+    }
+  }
   public async Task<T> GetFileBson<T>(string path)
   {
     var data = Convert.FromBase64String(await File.ReadAllTextAsync(path));
@@ -95,6 +121,29 @@ public class FileManager
   }
   #endregion
   #region String
+  public async Task<PupsTryResult<string>> TryGetFileStr(string path)
+  {
+    try
+    {
+      return new PupsTryResult<string>(true, await GetFileStr(path));
+    }
+    catch (Exception e)
+    {
+      return new PupsTryResult<string>(false, "", (PupsException)e);
+    }
+  }
+  public async Task<PupsTryResult> TryGetFileStr(string path, string content)
+  {
+    try
+    {
+      await SetFileStr(path, content);
+      return new PupsTryResult(true);
+    }
+    catch (Exception e)
+    {
+      return new PupsTryResult(false, (PupsException)e);
+    }
+  }
   public async Task<string> GetFileStr(string path) => await File.ReadAllTextAsync(path);
   public async Task SetFileStr(string path, string content) => await File.WriteAllTextAsync(path, content);
   #endregion
@@ -103,13 +152,13 @@ public class FileManager
   {
     foreach (var path in _directoryPaths.Values)
     {
-      if (!Directory.Exists(path))
+      if (Directory.Exists(path))
       {
-        Directory.CreateDirectory(path);
-        await logManager.PushLog($"Directory {path} created!", LogStatusType.Info);
+        await logManager.PushLog($"Directory {path} already exists!", LogStatusType.Info);
         continue;
       }
-      await logManager.PushLog($"Directory {path} already exists!", LogStatusType.Info);
+      Directory.CreateDirectory(path);
+      await logManager.PushLog($"Directory {path} created!", LogStatusType.Info);
     }
     await logManager.CreateFileLog();
   }
