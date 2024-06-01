@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using NUnit.Framework;
 using PupsCore.Services.InitService;
 
@@ -6,9 +7,8 @@ namespace PupsConsoleTest;
 public abstract class AnyTestAbstract
 {
   [SetUp]
-  public void Setup()
+  public void SetUp()
   {
-    if (PupsCoreBootstrap.AlreadyInited == false)
-      PupsCoreBootstrap.InitPupsCoreBootstrap();
+    RuntimeHelpers.RunClassConstructor(typeof(BootstrapManager).TypeHandle);
   }
 }

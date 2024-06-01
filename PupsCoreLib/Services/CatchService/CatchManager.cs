@@ -21,11 +21,11 @@ public class CatchManager
   }
   private Task Init()
   {
-    AppDomain.CurrentDomain.UnhandledException += UnhandledException;
+    AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionHandler;
     return Task.CompletedTask;
   }
 
-  private void UnhandledException(object sender, UnhandledExceptionEventArgs e)
+  private void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
   {
     var basicException = e.ExceptionObject as Exception;
     var pupsException = e.ExceptionObject as PupsException ?? new("", PupsExceptionType.Warning);
